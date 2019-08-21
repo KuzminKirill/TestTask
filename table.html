@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="screen.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div class="login-page">
+
+    <div class="form">
+        <form class="register-form" action="get_data.php" method="post">
+            <p class="info">Спасибо за регистрацию</p>
+            <p class="info">Список последних пользователей</p>
+            <p id="content"><br/></p>
+
+            <script type="text/javascript">
+                $.ajax({
+                        url: "/get_data.php",
+                        dataType: 'json',
+                        cache: false,
+                        success: function (data) {
+                            for (item of data) {
+                                $('#content').append(`<p>${item.name}(${item.email})<p>`);
+                            }
+                        }
+
+                    }
+                )
+            </script>
+
+            <!--<p class="message">Already registered? <a href="#">Sign In</a></p> -->
+        </form>
+    </div>
+</div>
+</body>
+</html>
